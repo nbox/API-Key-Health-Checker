@@ -130,6 +130,17 @@ jobs:
         with:
           path: release-artifacts
 
+      - name: Compute SHA256 for macOS DMGs
+        id: dmg_shas
+        run: |
+          set -euo pipefail
+          VERSION="${{ needs.version-check.outputs.version }}"
+          ARM_DMG="release-artifacts/release-macos/API Key Health Checker-${VERSION}-arm64.dmg"
+          INTEL_DMG="release-artifacts/release-macos/API Key Health Checker-${VERSION}-x64.dmg"
+
+          echo "ARM_SHA=$(sha256sum "$ARM_DMG" | awk '{print $1}')" >> "$GITHUB_OUTPUT"
+          echo "INTEL_SHA=$(sha256sum "$INTEL_DMG" | awk '{print $1}')" >> "$GITHUB_OUTPUT"
+
       - name: Publish release
         uses: softprops/action-gh-release@de2c0eb89ae2a093876385947365aca7b0e5f844 # v1
         with:
@@ -144,3 +155,27 @@ jobs:
             release-artifacts/**/*.AppImage
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Checkout Homebrew tap
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          repository: nbox/homebrew-tap
+          token: ${{ secrets.HOMEBREW_TAP_TOKEN }}
+          path: tap
+
+      - name: Update cask in tap repo
+        run: |
+          set -euo pipefail
+          VERSION="${{ needs.version-check.outputs.version }}"
+          ARM_SHA="${{ steps.dmg_shas.outputs.ARM_SHA }}"
+          INTEL_SHA="${{ steps.dmg_shas.outputs.INTEL_SHA }}"
+          CASK="tap/Casks/api-key-health-checker.rb"
+
+          perl -i -pe 's/^  version ".*"$/  version "'"$VERSION"'"/' "$CASK"
+          perl -0777 -i -pe 's/sha256 arm:\s*".*?",\s*\n\s*intel:\s*".*?"/sha256 arm:   "'"$ARM_SHA"'",\n         intel: "'"$INTEL_SHA"'"/s' "$CASK"
+
+          git -C tap config user.name "github-actions[bot]"
+          git -C tap config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git -C tap add Casks/api-key-health-checker.rb
+          git -C tap commit -m "api-key-health-checker $VERSION" || exit 0
+          git -C tap push
