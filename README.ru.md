@@ -20,7 +20,7 @@ GitHub: https://github.com/nbox/API-Key-Health-Checker
 brew install --cask nbox/tap/api-key-health-checker
 ```
 
-Полное удаление данных:
+Удаление:
 
 ```bash
 brew uninstall --cask --zap api-key-health-checker

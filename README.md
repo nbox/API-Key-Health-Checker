@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/logo.png" width="220" alt="API Key Health Checker logo" />
+  <img src="assets/logo.png" width="220" alt="API Key Health Checker logo " />
 </p>
 
 # API Key Health Checker
