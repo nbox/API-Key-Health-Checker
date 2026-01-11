@@ -32,7 +32,16 @@ Lanzamientos: https://github.com/nbox/API-Key-Health-Checker/releases
 
 ## macOS Gatekeeper
 
-⚠️ macOS puede bloquear compilaciones sin firma descargadas desde GitHub. Si ves el mensaje "app is damaged and can't be opened. You should move it to the Trash", usa este comando:
+⚠️ macOS puede bloquear compilaciones sin firma descargadas desde GitHub. Si ves una advertencia de que la app no está firmada y macOS ofrece moverla a la Papelera, usa una de las opciones siguientes:
+
+Opción 1: Permitir en System Settings -> Privacy & Security
+
+- Intenta abrir la app de forma normal (doble clic).
+- Abre System Settings -> Privacy & Security.
+- En la advertencia sobre API Key Health Checker, haz clic en Open Anyway.
+- Confirma pulsando Open.
+
+Opción 2: Eliminar el atributo de cuarentena
 
 ```bash
 xattr -dr com.apple.quarantine "/Applications/API Key Health Checker.app"

@@ -32,7 +32,16 @@ brew uninstall --cask --zap api-key-health-checker
 
 ## macOS Gatekeeper
 
-⚠️ macOS может блокировать неподписанные сборки, скачанные с GitHub. Если вы увидели сообщение "app is damaged and can't be opened. You should move it to the Trash", воспользуйтесь командой:
+⚠️ macOS может блокировать неподписанные сборки, скачанные с GitHub. Если вы видите предупреждение, что приложение не подписано, и macOS предлагает переместить его в корзину, воспользуйтесь одним из вариантов ниже:
+
+Вариант 1: Разрешить в System Settings -> Privacy & Security
+
+- Откройте приложение как обычно (двойным кликом).
+- Откройте System Settings -> Privacy & Security.
+- В предупреждении о API Key Health Checker нажмите Open Anyway.
+- Подтвердите, нажав Open.
+
+Вариант 2: Снять атрибут карантина
 
 ```bash
 xattr -dr com.apple.quarantine "/Applications/API Key Health Checker.app"

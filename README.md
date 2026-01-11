@@ -30,7 +30,16 @@ Releases: https://github.com/nbox/API-Key-Health-Checker/releases
 
 ## macOS Gatekeeper
 
-⚠️ macOS may block unsigned builds downloaded from GitHub. If you see the message "app is damaged and can't be opened. You should move it to the Trash", run:
+⚠️ macOS may block unsigned builds downloaded from GitHub. If you see a warning that the app can't be opened because it isn't signed and macOS offers to move it to the Trash, use one of the options below:
+
+Option 1: Allow in System Settings -> Privacy & Security
+
+- Try to open the app normally (double-click).
+- Open System Settings -> Privacy & Security.
+- Under the warning about API Key Health Checker, click Open Anyway.
+- Confirm by clicking Open.
+
+Option 2: Remove the quarantine attribute
 
 ```bash
 xattr -dr com.apple.quarantine "/Applications/API Key Health Checker.app"
