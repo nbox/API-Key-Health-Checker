@@ -6,7 +6,7 @@
 
 🌐 Read in: [English](README.md) | [Русский](README.ru.md) | [Español](README.es.md)
 
-Desktop app to validate API keys for popular services and run batch checks with rate limits and reports. Supports OpenAI (ChatGPT), Google Gemini, YouTube Data API, and custom endpoints.
+Simple desktop app to validate API keys for popular services and run batch checks with rate limits and reports. Supports OpenAI (ChatGPT), Google Gemini, YouTube Data API, and custom endpoints. For MacOS, Windows, Linux.
 
 ![Screenshot](assets/screenshot.png)
 
