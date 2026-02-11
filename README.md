@@ -2,7 +2,7 @@
   <img src="assets/logo.png" width="220" alt="API Key Health Checker logo " />
 </p>
 
-# API Key Health Checker
+# API Key Health Checker [DEPRECATED] ->  ([Proxy & API Key Checker](https://github.com/nbox/Proxy-API-Key-Checker ))
 
 🌐 Read in: [English](README.md) | [Русский](README.ru.md) | [Español](README.es.md)
 
